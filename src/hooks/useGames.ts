@@ -12,7 +12,8 @@ export interface Game {
   id: number;
   name: string;
   background_image: string;
-  parent_platforms: {platform: Platform}[]
+  parent_platforms: {platform: Platform}[];
+  metacritic: number;
 }
 
 interface FetchGamesResponse {
@@ -31,7 +32,7 @@ const useGames = () => {
       .then((res) => setGames(res.data.results))
       .catch((err) => {
         if (err instanceof CanceledError) return;
-        setError(err.message)
+        setError(err.message = "There was a problem connecting to the API!")
     });
 
       return () => controller.abort();
@@ -39,5 +40,7 @@ const useGames = () => {
 
   return {games, error};
 };
+
+console.log(apiClient);
 
 export default useGames;
